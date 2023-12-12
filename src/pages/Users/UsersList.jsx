@@ -40,9 +40,7 @@ export default function UsersList() {
 							className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
 							Activo
 						</th>
-						<th
-							scope='col'
-							className='relative py-3.5 pl-3'>
+						<th scope='col' className='relative py-3.5 pl-3'>
 							<span className='sr-only'>Edit</span>
 						</th>
 					</tr>
@@ -51,8 +49,12 @@ export default function UsersList() {
 					{data
 						? data.map((user) => (
 								<tr key={user.id}>
-									<td className='relative py-4 pr-3 text-sm font-medium text-gray-900'>{user.username}</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{user.email}</td>
+									<td className='relative py-4 pr-3 text-sm font-medium text-gray-900'>
+										{user.username}
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{user.email}
+									</td>
 									<td className='hidden px-3 py-4 text-sm text-gray-500 md:table-cell'>
 										{user.admin ? (
 											<span className='inline-flex items-center rounded-md bg-indigo-50 px-2 py-1 text-sm font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10'>

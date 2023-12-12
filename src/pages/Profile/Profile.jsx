@@ -1,6 +1,7 @@
 import { PaperClipIcon } from '@heroicons/react/20/solid';
 import { useEffect } from 'react';
 import useGet from '../../hooks/useGet/useGet';
+import SectionHeader from '../../components/Headers/SectionHeader';
 
 export default function Profile() {
 	const {
@@ -17,26 +18,34 @@ export default function Profile() {
 	return (
 		<div>
 			<div className='px-4 sm:px-0'>
-				<h3 className='text-base font-semibold leading-7 text-gray-900'>Perfil del usuario</h3>
-				<p className='mt-1 max-w-2xl text-sm leading-6 text-gray-500'>Información del perfil de usuario.</p>
+				<SectionHeader
+					title={'Perfil del Usuario'}
+					description={'Información del perfil de usuario.'}
+				/>
 			</div>
 			<div className='mt-6 border-t border-gray-100'>
 				<dl className='divide-y divide-gray-100'>
 					<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-						<dt className='text-sm font-medium leading-6 text-gray-900'>Nombre de usuario</dt>
+						<dt className='text-sm font-medium leading-6 text-gray-900'>
+							Nombre de usuario
+						</dt>
 						<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
 							{currentUserData ? currentUserData.username : null}
 						</dd>
 					</div>
 					<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-						<dt className='text-sm font-medium leading-6 text-gray-900'>Email</dt>
+						<dt className='text-sm font-medium leading-6 text-gray-900'>
+							Email
+						</dt>
 						<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
 							{currentUserData ? currentUserData.email : null}
 						</dd>
 					</div>
 
 					<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-						<dt className='text-sm font-medium leading-6 text-gray-900'>Admin</dt>
+						<dt className='text-sm font-medium leading-6 text-gray-900'>
+							Admin
+						</dt>
 						<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
 							{currentUserData ? (
 								currentUserData.admin ? (
@@ -52,7 +61,9 @@ export default function Profile() {
 						</dd>
 					</div>
 					<div className='px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0'>
-						<dt className='text-sm font-medium leading-6 text-gray-900'>Activo</dt>
+						<dt className='text-sm font-medium leading-6 text-gray-900'>
+							Activo
+						</dt>
 						<dd className='mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0'>
 							{currentUserData ? (
 								currentUserData.active ? (

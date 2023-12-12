@@ -28,6 +28,8 @@ import Profile from './pages/Profile/Profile.jsx';
 import ProductsList from './pages/Products/ProductsList.jsx';
 import NotFound from './pages/Notfound/NotFound.jsx';
 import SidebarNav from './components/SidebarNav/SidebarNav.jsx';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
+import RestrictedAccess from './components/RestrictedAccess/RestrictedAccess.jsx';
 
 function App() {
 	const { isLoadingContext, setIsLoadingContext } = useContext(LoadingContext);
@@ -44,106 +46,136 @@ function App() {
 
 			<SidebarNav>
 				<Routes>
-					<Route
-						path='/'
-						element={<Home />}
-					/>
-					<Route
-						path='/login'
-						element={<Login />}
-					/>
+					<Route path='/' element={<Home />} />
+					<Route path='/login' element={<Login />} />
 					<Route
 						path='/dashboard'
-						element={<Dashboard />}
+						element={
+							<ProtectedRoute>
+								<Dashboard />
+							</ProtectedRoute>
+						}
 					/>
 					<Route
 						path='/users'
-						element={<UsersLayout />}>
-						<Route
-							path='create'
-							element={<UsersCreate />}
-						/>
-						<Route
-							path='list'
-							element={<UsersList />}
-						/>
-						<Route
-							path=':id/edit'
-							element={<UsersEdit />}
-						/>
+						element={
+							<ProtectedRoute>
+								<UsersLayout />
+							</ProtectedRoute>
+						}>
+						<Route path='create' element={<UsersCreate />} />
+						<Route path='list' element={<UsersList />} />
+						<Route path=':id/edit' element={<UsersEdit />} />
 					</Route>
 					<Route
 						path='/providers'
-						element={<ProvidersLayout />}>
+						element={
+							<ProtectedRoute>
+								<ProvidersLayout />
+							</ProtectedRoute>
+						}>
 						<Route
 							path='create'
-							element={<ProvidersCreate />}
+							element={
+								<RestrictedAccess>
+									<ProvidersCreate />
+								</RestrictedAccess>
+							}
 						/>
-						<Route
-							path='list'
-							element={<ProvidersList />}
-						/>
+						<Route path='list' element={<ProvidersList />} />
 						<Route
 							path=':id/edit'
-							element={<ProvidersEdit />}
+							element={
+								<RestrictedAccess>
+									<ProvidersEdit />
+								</RestrictedAccess>
+							}
 						/>
 					</Route>
 					<Route
 						path='/taxes'
-						element={<TaxesLayout />}>
+						element={
+							<ProtectedRoute>
+								<TaxesLayout />
+							</ProtectedRoute>
+						}>
 						<Route
 							path='create'
-							element={<TaxesCreate />}
+							element={
+								<RestrictedAccess>
+									<TaxesCreate />
+								</RestrictedAccess>
+							}
 						/>
-						<Route
-							path='list'
-							element={<TaxesList />}
-						/>
+						<Route path='list' element={<TaxesList />} />
 						<Route
 							path=':id/edit'
-							element={<TaxesEdit />}
+							element={
+								<RestrictedAccess>
+									<TaxesEdit />
+								</RestrictedAccess>
+							}
 						/>
 					</Route>
 					<Route
 						path='/categories'
-						element={<CategoriesLayout />}>
+						element={
+							<ProtectedRoute>
+								<CategoriesLayout />
+							</ProtectedRoute>
+						}>
 						<Route
 							path='create'
-							element={<CategoriesCreate />}
+							element={
+								<RestrictedAccess>
+									<CategoriesCreate />
+								</RestrictedAccess>
+							}
 						/>
-						<Route
-							path='list'
-							element={<CategoriesList />}
-						/>
+						<Route path='list' element={<CategoriesList />} />
 						<Route
 							path=':id/edit'
-							element={<CategoriesEdit />}
+							element={
+								<RestrictedAccess>
+									<CategoriesEdit />
+								</RestrictedAccess>
+							}
 						/>
 					</Route>
 					<Route
 						path='/products'
-						element={<ProductsLayout />}>
+						element={
+							<ProtectedRoute>
+								<ProductsLayout />
+							</ProtectedRoute>
+						}>
 						<Route
 							path='create'
-							element={<ProductsCreate />}
+							element={
+								<RestrictedAccess>
+									<ProductsCreate />
+								</RestrictedAccess>
+							}
 						/>
-						<Route
-							path='list'
-							element={<ProductsList />}
-						/>
+						<Route path='list' element={<ProductsList />} />
 						<Route
 							path=':id/edit'
-							element={<ProductsEdit />}
+							element={
+								<RestrictedAccess>
+									<ProductsEdit />
+								</RestrictedAccess>
+							}
 						/>
 					</Route>
 					<Route
 						path='/profile'
-						element={<Profile />}
+						element={
+							<ProtectedRoute>
+								<Profile />
+							</ProtectedRoute>
+						}
 					/>
-					<Route
-						path='*'
-						element={<NotFound />}
-					/>
+					<Route path='*' element={<NotFound />} />
 				</Routes>
 			</SidebarNav>
 		</Fragment>

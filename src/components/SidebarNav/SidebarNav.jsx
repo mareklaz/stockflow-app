@@ -16,7 +16,7 @@ import {
 import { NavLink } from 'react-router-dom';
 import AuthContext from '../../context/AuthContext';
 
-import globalLogo from '../../assets/logo.png';
+import logo from '../../assets/logo.webp';
 
 const navigation = [
 	{ name: 'Dashboard', to: '/dashboard', icon: HomeIcon },
@@ -42,9 +42,7 @@ export default function SidebarNav({ children }) {
 
 	return (
 		<>
-			<Transition.Root
-				show={sidebarOpen}
-				as={Fragment}>
+			<Transition.Root show={sidebarOpen} as={Fragment}>
 				<Dialog
 					as='div'
 					className='relative z-50 lg:hidden'
@@ -95,15 +93,13 @@ export default function SidebarNav({ children }) {
 								<div className='flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2'>
 									<div className='flex h-16 shrink-0 items-center'>
 										<img
-											className='rounded-full h-12 w-auto'
-											src={globalLogo}
-											alt='Your Company'
+											className='rounded-full mt-4 h-12 w-auto'
+											src={logo}
+											alt='Stockflow logo mobile'
 										/>
 									</div>
 									<nav className='flex flex-1 flex-col'>
-										<ul
-											role='list'
-											className='flex flex-1 flex-col gap-y-7'>
+										<ul role='list' className='flex flex-1 flex-col gap-y-7'>
 											<li>
 												<ul className='-mx-2 space-y-1'>
 													{navigation.map((item) => (
@@ -122,7 +118,9 @@ export default function SidebarNav({ children }) {
 																<item.icon
 																	className={classNames(
 																		({ isActive }) =>
-																			isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+																			isActive
+																				? 'text-indigo-600'
+																				: 'text-gray-400 group-hover:text-indigo-600',
 																		'h-6 w-6 shrink-0'
 																	)}
 																	aria-hidden='true'
@@ -146,7 +144,9 @@ export default function SidebarNav({ children }) {
 															<UserGroupIcon
 																className={classNames(
 																	({ isActive }) =>
-																		isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+																		isActive
+																			? 'text-indigo-600'
+																			: 'text-gray-400 group-hover:text-indigo-600',
 																	'h-6 w-6 shrink-0'
 																)}
 																aria-hidden='true'
@@ -169,21 +169,17 @@ export default function SidebarNav({ children }) {
 			<div className='hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col'>
 				{/* Sidebar component, swap this element with another sidebar if you like */}
 				<div className='flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6'>
-					<div className='flex h-16 shrink-0 items-center'>
+					<div className='flex h-16 mt-4 shrink-0 items-center'>
 						<img
 							className='rounded-full h-12 w-auto'
-							src={globalLogo}
-							alt='Your Company'
+							src={logo}
+							alt='Stockflow logo desktop'
 						/>
 					</div>
 					<nav className='flex flex-1 flex-col'>
-						<ul
-							role='list'
-							className='flex flex-1 flex-col gap-y-7'>
+						<ul role='list' className='flex flex-1 flex-col gap-y-7'>
 							<li>
-								<ul
-									role='list'
-									className='-mx-2 space-y-1'>
+								<ul role='list' className='-mx-2 space-y-1'>
 									{navigation.map((item) => (
 										<li key={item.name}>
 											<NavLink
@@ -199,7 +195,9 @@ export default function SidebarNav({ children }) {
 												<item.icon
 													className={classNames(
 														({ isActive }) =>
-															isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+															isActive
+																? 'text-indigo-600'
+																: 'text-gray-400 group-hover:text-indigo-600',
 														'h-6 w-6 shrink-0'
 													)}
 													aria-hidden='true'
@@ -223,7 +221,9 @@ export default function SidebarNav({ children }) {
 											<UserGroupIcon
 												className={classNames(
 													({ isActive }) =>
-														isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+														isActive
+															? 'text-indigo-600'
+															: 'text-gray-400 group-hover:text-indigo-600',
 													'h-6 w-6 shrink-0'
 												)}
 												aria-hidden='true'
@@ -239,10 +239,13 @@ export default function SidebarNav({ children }) {
 									<NavLink
 										onClick={() => setSidebarOpen(false)}
 										to={'/login'}
-										className='text-gray-400 hover:text-green-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
+										className='text-gray-400 hover:text-indigo-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 										<ArrowLeftOnRectangleIcon
 											className={classNames(
-												({ isActive }) => (isActive ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'),
+												({ isActive }) =>
+													isActive
+														? 'text-indigo-600'
+														: 'text-gray-400 group-hover:text-indigo-600',
 												'h-6 w-6 shrink-0'
 											)}
 											aria-hidden='true'
@@ -257,7 +260,10 @@ export default function SidebarNav({ children }) {
 											className='text-gray-400 hover:text-green-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 											<UserCircleIcon
 												className={classNames(
-													({ isActive }) => (isActive ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'),
+													({ isActive }) =>
+														isActive
+															? 'text-green-600'
+															: 'text-gray-400 group-hover:text-green-600',
 													'h-6 w-6 shrink-0'
 												)}
 												aria-hidden='true'
@@ -269,7 +275,10 @@ export default function SidebarNav({ children }) {
 											className='text-gray-400 hover:text-red-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 											<ArrowRightOnRectangleIcon
 												className={classNames(
-													({ isActive }) => (isActive ? 'text-red-600' : 'text-red-400 group-hover:text-red-600'),
+													({ isActive }) =>
+														isActive
+															? 'text-red-600'
+															: 'text-red-400 group-hover:text-red-600',
 													'h-6 w-6 shrink-0'
 												)}
 												aria-hidden='true'
@@ -290,10 +299,7 @@ export default function SidebarNav({ children }) {
 					className='-m-2.5 p-2.5 text-gray-700 lg:hidden'
 					onClick={() => setSidebarOpen(true)}>
 					<span className='sr-only'>Open sidebar</span>
-					<Bars3Icon
-						className='h-6 w-6'
-						aria-hidden='true'
-					/>
+					<Bars3Icon className='h-6 w-6' aria-hidden='true' />
 				</button>
 				{/* <div className="flex-1 text-sm font-semibold leading-6 text-gray-900">
             Dashboard
@@ -306,7 +312,10 @@ export default function SidebarNav({ children }) {
 							className='text-gray-400 hover:text-green-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 							<ArrowLeftOnRectangleIcon
 								className={classNames(
-									({ isActive }) => (isActive ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'),
+									({ isActive }) =>
+										isActive
+											? 'text-green-600'
+											: 'text-gray-400 group-hover:text-green-600',
 									'h-6 w-6 shrink-0'
 								)}
 								aria-hidden='true'
@@ -321,7 +330,10 @@ export default function SidebarNav({ children }) {
 								className='text-gray-400 hover:text-green-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 								<UserCircleIcon
 									className={classNames(
-										({ isActive }) => (isActive ? 'text-green-600' : 'text-gray-400 group-hover:text-green-600'),
+										({ isActive }) =>
+											isActive
+												? 'text-green-600'
+												: 'text-gray-400 group-hover:text-green-600',
 										'h-6 w-6 shrink-0'
 									)}
 									aria-hidden='true'
@@ -332,7 +344,10 @@ export default function SidebarNav({ children }) {
 								className='text-gray-400 hover:text-red-700 hover:bg-gray-100 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'>
 								<ArrowRightOnRectangleIcon
 									className={classNames(
-										({ isActive }) => (isActive ? 'text-red-600' : 'text-gray-400 group-hover:text-red-600'),
+										({ isActive }) =>
+											isActive
+												? 'text-red-600'
+												: 'text-gray-400 group-hover:text-red-600',
 										'h-6 w-6 shrink-0'
 									)}
 									aria-hidden='true'

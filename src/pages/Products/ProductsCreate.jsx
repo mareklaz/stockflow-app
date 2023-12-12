@@ -12,7 +12,13 @@ import useGet from '../../hooks/useGet/useGet';
 export default function productesCreate() {
 	const { register, handleSubmit } = useForm();
 
-	const { data: taxesData, isLoading: taxesIsLoading, error: taxesError, fetchGet: taxesFetchGet } = useGet();
+	const {
+		data: taxesData,
+		isLoading: taxesIsLoading,
+		error: taxesError,
+		fetchGet: taxesFetchGet,
+	} = useGet();
+
 	const {
 		data: providersData,
 		isLoading: providersIsLoading,
@@ -20,9 +26,17 @@ export default function productesCreate() {
 		fetchGet: providersFetchGet,
 	} = useGet();
 
+	const {
+		data: categoryData,
+		isLoading: categoryIsLoading,
+		error: categoryError,
+		fetchGet: categoryFetchGet,
+	} = useGet();
+
 	useEffect(() => {
 		taxesFetchGet('/taxes');
 		providersFetchGet('/providers');
+		categoryFetchGet('/categories');
 	}, []);
 
 	const inputs = [
@@ -82,6 +96,14 @@ export default function productesCreate() {
 			required: true,
 		},
 		{
+			label: 'Categoría',
+			type: 'select',
+			options: categoryData,
+			name: 'categoryRef',
+			id: 'categoryRef',
+			required: false,
+		},
+		{
 			label: 'Código de Barras',
 			type: 'text',
 			name: 'barCode',
@@ -133,7 +155,9 @@ export default function productesCreate() {
 				<div>
 					<SectionHeader
 						title={'Nuevo Producto'}
-						description={'Completa la información con el nuevo Producto que deseas crear.'}
+						description={
+							'Completa la información con el nuevo Producto que deseas crear.'
+						}
 					/>
 					<div className='space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0'>
 						{taxesData && providersData

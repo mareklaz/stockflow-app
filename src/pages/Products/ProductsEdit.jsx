@@ -14,7 +14,13 @@ import SelectField from '../../components/Forms/SelectField';
 export default function TaxesEdit() {
 	const { register, handleSubmit, setValue } = useForm();
 
-	const { data: taxesData, isLoading: taxesIsLoading, error: taxesError, fetchGet: taxesFetchGet } = useGet();
+	const {
+		data: taxesData,
+		isLoading: taxesIsLoading,
+		error: taxesError,
+		fetchGet: taxesFetchGet,
+	} = useGet();
+
 	const {
 		data: providersData,
 		isLoading: providersIsLoading,
@@ -22,9 +28,17 @@ export default function TaxesEdit() {
 		fetchGet: providersFetchGet,
 	} = useGet();
 
+	const {
+		data: categoryData,
+		isLoading: categoryIsLoading,
+		error: categoryError,
+		fetchGet: categoryFetchGet,
+	} = useGet();
+
 	useEffect(() => {
 		taxesFetchGet('/taxes');
 		providersFetchGet('/providers');
+		categoryFetchGet('/categories');
 	}, []);
 
 	const inputs = [
@@ -84,6 +98,14 @@ export default function TaxesEdit() {
 			required: true,
 		},
 		{
+			label: 'Categoría',
+			type: 'select',
+			options: categoryData,
+			name: 'categoryRef',
+			id: 'categoryRef',
+			required: false,
+		},
+		{
 			label: 'Código de Barras',
 			type: 'text',
 			name: 'barCode',
@@ -102,7 +124,12 @@ export default function TaxesEdit() {
 		fetchPut: productUpdateFetchPut,
 	} = usePut();
 
-	const { data: productData, isLoading: productIsLoading, error: productError, fetchGet: productFetchGet } = useGet();
+	const {
+		data: productData,
+		isLoading: productIsLoading,
+		error: productError,
+		fetchGet: productFetchGet,
+	} = useGet();
 
 	useEffect(() => {
 		productFetchGet(`/products/${id}`);
@@ -153,7 +180,9 @@ export default function TaxesEdit() {
 				<div>
 					<SectionHeader
 						title={'Editar Impuesto'}
-						description={'Completa la información con el nuevo Impuesto que deseas crear.'}
+						description={
+							'Completa la información con el nuevo Impuesto que deseas crear.'
+						}
 					/>
 					<div className='space-y-8 border-b border-gray-900/10 pb-12 sm:space-y-0 sm:divide-y sm:divide-gray-900/10 sm:border-t sm:pb-0'>
 						{taxesData && providersData

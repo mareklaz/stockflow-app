@@ -62,12 +62,15 @@ export default function ProductsList() {
 						</th>
 						<th
 							scope='col'
-							className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
-							Cód. Barras
+							className='hidden px-3 py-3.5 text-left text-sm font-semibold text-gray-900 sm:table-cell'>
+							Categoría
 						</th>
 						<th
 							scope='col'
-							className='relative py-3.5 pl-3'>
+							className='px-3 py-3.5 text-left text-sm font-semibold text-gray-900'>
+							Cód. Barras
+						</th>
+						<th scope='col' className='relative py-3.5 pl-3'>
 							<span className='sr-only'>Edit</span>
 						</th>
 					</tr>
@@ -76,12 +79,25 @@ export default function ProductsList() {
 					{data
 						? data.map((product) => (
 								<tr key={product.id}>
-									<td className='relative py-4 pr-3 text-sm font-medium text-gray-900'>{product.name}</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.price} €</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.taxRef.value} %</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.totalPrice} €</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.cost} €</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.totalCost} €</td>
+									<td className='relative py-4 pr-3 text-sm font-medium text-gray-900'>
+										{product.name}
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.price.toFixed(2)} €
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.taxRef.value} %
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.totalPrice.toFixed(2)} €
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.cost.toFixed(2)} €
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.totalCost.toFixed(2)} €
+									</td>
+
 									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
 										{product.active ? (
 											<span className='inline-flex items-center rounded-md bg-green-100 px-2 py-1 text-sm font-medium text-green-600 ring-1 ring-inset ring-green-500/10'>
@@ -93,8 +109,15 @@ export default function ProductsList() {
 											</span>
 										)}
 									</td>
-									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>{product.providerRef.name}</td>
-									<td className='px-3 py-4 text-sm text-gray-500'>{product.barCode}</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.providerRef.name}
+									</td>
+									<td className='hidden px-3 py-4 text-sm text-gray-500 sm:table-cell'>
+										{product.categoryRef?.name}
+									</td>
+									<td className='px-3 py-4 text-sm text-gray-500'>
+										{product.barCode}
+									</td>
 									<td className='relative py-4 pl-3 text-right text-sm font-medium'>
 										<Link
 											to={`/products/${product.id}/edit`}
