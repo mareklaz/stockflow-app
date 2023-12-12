@@ -39,7 +39,7 @@ function App() {
 			<LoadingBar
 				color='#6366f1'
 				height={5}
-				waitingTime={200}
+				waitingTime={300}
 				progress={isLoadingContext ? 100 : 0}
 				onLoaderFinished={() => {}}
 			/>
@@ -63,9 +63,23 @@ function App() {
 								<UsersLayout />
 							</ProtectedRoute>
 						}>
-						<Route path='create' element={<UsersCreate />} />
+						<Route
+							path='create'
+							element={
+								<RestrictedAccess>
+									<UsersCreate />
+								</RestrictedAccess>
+							}
+						/>
 						<Route path='list' element={<UsersList />} />
-						<Route path=':id/edit' element={<UsersEdit />} />
+						<Route
+							path=':id/edit'
+							element={
+								<RestrictedAccess>
+									<UsersEdit />
+								</RestrictedAccess>
+							}
+						/>
 					</Route>
 					<Route
 						path='/providers'
