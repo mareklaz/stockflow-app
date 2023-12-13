@@ -1,7 +1,8 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useGet from '../../hooks/useGet/useGet';
 import SectionHeader from '../../components/Headers/SectionHeader';
 import { Link } from 'react-router-dom';
+import SearchInput from '../../components/SearchInput/SearchInput';
 
 export default function UsersList() {
 	const { data, isLoading, error, fetchGet } = useGet();
@@ -10,12 +11,24 @@ export default function UsersList() {
 		fetchGet('/users');
 	}, []);
 
+	const [filter, setFilter] = useState('');
+
+	const filtredData = filter
+		? data.filter(
+				(user) => user.username.includes(filter) || user.email.includes(filter)
+		  )
+		: data;
+
+	console.log(filtredData);
+
 	return (
 		<div>
 			<SectionHeader
 				title={'Listado de usuarios'}
 				description={'Listado de usuarios en la base de datos.'}
 			/>
+
+			<SearchInput searchText={filter} setSearchText={setFilter} />
 
 			<table className='w-full text-left divide-y divide-gray-400'>
 				<thead className=''>
@@ -47,7 +60,7 @@ export default function UsersList() {
 				</thead>
 				<tbody className='divide-y divide-gray-200'>
 					{data
-						? data.map((user) => (
+						? filtredData.map((user) => (
 								<tr key={user.id}>
 									<td className='relative py-4 pr-3 text-sm font-medium text-gray-900'>
 										{user.username}
